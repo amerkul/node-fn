@@ -1,7 +1,7 @@
 const getFullName = person => person.firstName + " " + person.lastName
 
 const getUniqueWords = words => {
-    return Array.from(new Set(words.split(" ").map(word => word.toLowerCase())))
+    return Array.from(new Set(words.match(/\b(\w+)\b/g).map(word => word.toLowerCase())))
 }
 
 const sortByAlphabet = uniqueWords => {
