@@ -1,4 +1,10 @@
 const lazyMap = (array, mapFn) => {
+    if (typeof(array) !== "object" || !Array.isArray(array)) {
+        throw Error("Invalid array")
+    }
+    if (typeof(mapFn) !== "function") {
+        throw Error("Invalid function")
+    }
     let copy = Array.from(array)
     let next = 0
     let last = array.length
