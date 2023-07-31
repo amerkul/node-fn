@@ -5,7 +5,7 @@ import { getFullName, filterUniqueWords, getAverageGrade } from "./fn/compositio
 import { students } from "./domain/students.js"
 import { createCounter, repeatFunction } from "./fn/closure-hof-fn.js"
 import { calculateFactorial, power } from "./fn/recursion-fn.js"
-import { lazyMap, fibonacciGenerator } from "./fn/lazy-fn.js"
+import { lazyMap, fibonacciGenerator, cachedFibonacciGenerator } from "./fn/lazy-fn.js"
 
 console.log(calculateDiscountedPrice(products, 10))
 console.log(products)
@@ -28,9 +28,10 @@ for (let i = 0; i < 7; i++) {
     console.log(next())
     console.log(array)
 }
-const fibonacci = fibonacciGenerator()
-for (let i = 0; i < 20; i++) {
-    console.log(fibonacci())
-}
+console.log(fibonacciGenerator(6))
+const cachedFibonacci = cachedFibonacciGenerator(fibonacciGenerator)
+console.log(cachedFibonacci(6))
+console.log(cachedFibonacci(6))
+console.log(cachedFibonacci(10))
 
 

@@ -17,24 +17,31 @@ const lazyMap = (array, mapFn) => {
     }
 }
 
-const fibonacciGenerator = () => {
+const fibonacciGenerator = (n) => {
     let arg1 = 0
     let arg2 = 1
-    let i = 0
-    return () => {
-        if (i === 0) {
-            ++i
-            return arg1
-        }
-        if (i === 1) {
-            ++i
-            return arg2
-        }
+    if (n === 1) {
+        return arg1       
+    }
+    if (n === 2) {
+        return arg2
+    }
+    for (let i = 0; i < n - 2; i++) {
         let next = arg1 + arg2
         arg1 = arg2
         arg2 = next
-        return next
+    }
+    return arg2
+}
+
+const cachedFibonacciGenerator = (fibonacciGenerator) => {
+    const cache = {}
+    return function cacheFunc(n) {
+        if (cache[n] === undefined) {
+            cache[n] = fibonacciGenerator(n)
+        }
+        return cache[n]
     }
 }
 
-export {lazyMap, fibonacciGenerator}
+export {lazyMap, fibonacciGenerator, cachedFibonacciGenerator}
